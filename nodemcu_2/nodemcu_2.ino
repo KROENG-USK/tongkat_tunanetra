@@ -2,8 +2,8 @@
 #include <FirebaseESP8266.h>
 
 // Setting WiFi Hotspot
-#ifndef
-#define WIFI_SSID "TP-LINK_6A47"
+#ifndef WIFI_SSID
+#define WIFI_SSID "TP-Link_6A47"
 #define WIFI_PASSWORD "44585174"
 #endif
 
@@ -55,10 +55,16 @@ void loop() {
   bool buttonState;
   Firebase.getBool(firebaseData, path_1, &buttonState);
   if(buttonState == true){
-    digitalWrite(buzzPin, HIGH);
+    tone(buzzPin, 5000, 60);
+    // digitalWrite(buzzPin, HIGH);
+    Serial.println("Hidup");
   }
   else if(buttonState == false){
-    digitalWrite(buzzPin, LOW);
+    noTone(buzzPin);
+    // digitalWrite(buzzPin, LOW);
+    Serial.println("Mati");
   }
+
+  delay(20);
 
 }
